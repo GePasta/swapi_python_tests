@@ -2,7 +2,6 @@
 import logging
 import typing
 from dataclasses import asdict
-from typing import Optional
 
 import requests
 from requests import Response
@@ -13,7 +12,7 @@ from helpers.custom_execptions import ModelException
 log = logging.getLogger()
 
 
-def get_star_wars_item(host: str, endpoint: str, item_id: Optional[str] = None) -> Response:
+def get_star_wars_item(host: str, endpoint: str, item_id: str | int) -> Response:
     """Combine url and send a GET request"""
     url = f'{host}{endpoint}/{item_id}'
     return send_get_request(url=url)

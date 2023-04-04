@@ -14,12 +14,18 @@ pytestmark = [pytest.mark.functional, pytest.mark.people]
 
 
 @pytest.mark.parametrize('item_id, status_code', [
+    ('-200000', 200),
+    ('-1', 200),
+    ('0', 200),
     ('1', 200),
     ('2', 200),
     ('50', 200),
     ('99', 200),
     ('100', 200),
 ], ids=[
+    'ID_-200000_LARGE_MINUS',
+    'ID_-1_SMALL_MINUS',
+    'ID_O_NULL',
     'ID_1_BEGINNING_OF_THE_RANGE',
     'ID_2_BEGINNING_OF_THE_RANGE',
     'ID_50_MIDRANGE',

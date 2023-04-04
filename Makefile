@@ -1,6 +1,3 @@
-#-include env/local.env
-#export
-
 .PHONY: build
 build:
 	docker build  -f ./docker/Dockerfile -t http-server-tests:ci .
@@ -14,7 +11,14 @@ TIMESTAMP:=$(shell date +%Y%m%d_%H%M%S)
 
 .PHONY: test
 test:
-	pytest \
+	pytest
+
+.PHONY: functional
+functional:
+	pytest -m functional\
 	--log-file=${RESULTS_PATH}/${TIMESTAMP}_tests.log \
-	--html=${RESULTS_PATH}/${TIMESTAMP}_report.html --self-contained-html \
-	$(filter-out $@,$(MAKECMDGOALS))
+	--html=${RESULTS_PATH}/${TIMESTAMP}_report.html --self-contained-html
+
+.PHONY: performance
+performance:
+	pytest -m performance
