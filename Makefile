@@ -15,7 +15,7 @@ test:
 
 .PHONY: functional
 functional:
-	pytest -m functional\
+	pytest -m functional \
 	--log-file=${RESULTS_PATH}/${TIMESTAMP}_tests.log \
 	--html=${RESULTS_PATH}/${TIMESTAMP}_report.html --self-contained-html
 
